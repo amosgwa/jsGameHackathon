@@ -7,6 +7,14 @@ console.log(CANVAS)
 var canvasWidth = parseInt(CANVAS.width);
 var canvasHeight = parseInt(CANVAS.height);
 
+var bullet = {
+  x: 0,
+  y: 0,
+  dir: 0
+}
+var bullets = [bullet];
+
+
 function drawGun(key){
   // constants for the nozzle.
   var gunStroke = 10;
@@ -58,6 +66,13 @@ function drawGun(key){
     ctx.fill();
   }
 }
+function shootGun(){
+  console.log("Pew");
+  var newBullet = new bullet();
+  var direction = Math.sin(CURR_DEG)/Math.cos(CURR_DEG);
+  newBullet.dir = direction;
+  bullets.append(newBullet);
+}
 
 // Add listeners
 function listenCanvas(){
@@ -71,6 +86,7 @@ function keyDown(e){
   if(e.keyCode === 32){
     //Shoot blocks from the gun.
     showKey('space');
+    shootGun();
     console.log('space');
   }
   if(e.keyCode === 37){

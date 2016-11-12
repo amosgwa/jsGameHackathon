@@ -140,9 +140,9 @@ var drawTank = function(){
 
 // Draw everything
 var render = function () {
-	if (bgReady) {
-		ctx.drawImage(bgImage, 0, 0);
-	}
+	// if (bgReady) {
+	// 	ctx.drawImage(bgImage, 0, 0);
+	// }
 
 	if (heroReady) {
 	//ctx.drawImage(heroImage, hero.x, hero.y);
@@ -168,7 +168,7 @@ if (monsterReady) {
 var main = function () {
 	var now = Date.now();
 	var delta = now - then;
-
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	update(delta / 1000);
 	render();
 
