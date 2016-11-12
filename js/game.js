@@ -7,38 +7,32 @@ console.log(CANVAS)
 var canvasWidth = parseInt(CANVAS.width);
 var canvasHeight = parseInt(CANVAS.height);
 
-function drawBase() {
+function drawGun(key){
+  // constants for the nozzle.
+  var gunStroke = 10;
+  var gunHeight = canvasHeight*0.15;
+
+  var changeOfDegree = 5;
+
+  // constants for the base.
   var baseRadius = canvasWidth*0.10; //10% of the canvas width
   var startAngle = Math.PI;
   var endAngle = 0;
 
-  if (CANVAS.getContext){
-    var ctx = CANVAS.getContext('2d');
-
-    ctx.beginPath();
-    ctx.arc(getMiddleX(), canvasHeight, baseRadius, startAngle, endAngle);
-    ctx.fill();
-  }
-}
-
-function drawGun(key){
-  var gunStroke = 10;
-  var gunHeight = canvasHeight*0.15;
-
   if(key === 'left'){
 
-    if(CURR_DEG - 1 < -90){
+    if(CURR_DEG - changeOfDegree < -90){
       console.log("leftmost");
     } else {
-      CURR_DEG -= 1;
+      CURR_DEG -= changeOfDegree;
     }
   }
 
   if(key === 'right'){
-    if(CURR_DEG + 1 > 90){
+    if(CURR_DEG + changeOfDegree > 90){
       console.log("rightmost");
     } else {
-      CURR_DEG += 1;
+      CURR_DEG += changeOfDegree;
     }
   }
 
@@ -47,7 +41,8 @@ function drawGun(key){
 
   if (CANVAS.getContext){
     var ctx = CANVAS.getContext('2d');
-
+    ctx.clearRect(0,0,canvasWidth,canvasHeight);
+    ctx.save();
     ctx.beginPath();
     ctx.translate(getMiddleX(), canvasHeight);
     console.log("DRAWING ")
@@ -56,11 +51,12 @@ function drawGun(key){
     ctx.lineTo(0, -gunHeight);
     ctx.lineWidth = gunStroke;
     ctx.stroke();
+    ctx.restore();
+
+    ctx.beginPath();
+    ctx.arc(getMiddleX(), canvasHeight, baseRadius, startAngle, endAngle);
+    ctx.fill();
   }
-}
-
-function updateGun(key){
-
 }
 
 // Add listeners
