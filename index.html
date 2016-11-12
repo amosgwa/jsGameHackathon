@@ -26,6 +26,8 @@
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
+  
+  <script src="js/jquery-3.1.1.min.js"></script>
 
 </head>
 <body>
@@ -35,18 +37,22 @@
  <!-- .container is main centered wrapper -->
 <div class="container">
   <div class="row">
-    <div div="header">THIS IS THE HEADER</div>
+    <div id="header">THIS IS THE HEADER</div>
   </div>
 
   <!-- columns should be the immediate child of a .row -->
   <div class="row">
     <div class="one column">One</div>
 
-    <div class="ten columns">
-      <canvas id="gameCanvas"></canvas>
+    <div class="nine columns">
+      <canvas id="gameCanvas" width="500" height="500" tabindex='1'></canvas>
     </div>
 
-    <div class="one column">One</div>
+    <div class="two columns">
+      KEY Pressed
+      <ul id="keys">
+      </ul>
+    </div>
   </div>
 
 </div>
@@ -54,4 +60,25 @@
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
+
+<script>
+  $(document).ready(function(){
+    $("#header").text("HELLO THERE");
+    console.log($("#header"));
+
+    drawBase();
+    drawGun("A");
+    listenCanvas();
+
+
+    // Focus the canvas always.
+    $('#gameCanvas').focus();
+    $('#gameCanvas').blur(function(){
+      $('#gameCanvas').focus();
+    });
+
+  });
+</script>
+
+<script src="js/game.js"></script>
 </html>

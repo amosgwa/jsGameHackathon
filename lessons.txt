@@ -1,0 +1,7 @@
+Lessons Learned
+
+- Canvas width and height should not be set with CSS because
+they will stretch out the DOM rendering and make the drawings
+blur.
+
+- Make a DOM focusable by adding tabindex='1'
